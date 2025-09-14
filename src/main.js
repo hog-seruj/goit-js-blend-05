@@ -1,16 +1,50 @@
-/*
-  Створи список справ.
-  На сторінці є два інпути які має вводиться назва і текст задачі.
-  Після натискання на кнопку "Add" завдання додається до списку #task-list.
+import { nanoid } from 'nanoid';
+import refs from './js/refs';
+import {
+  setTasksStorage,
+  getTasksStorage,
+  updateTasksStorage,
+} from './js/local-storage-api';
+import renderTaskComponents, { removeTask } from './js/tasks';
+import changeTheme, {initTheme} from './js/theme-switcher';
 
-  У кожної картки має бути кнопка "Delete", щоб можна було
-  прибрати завдання зі списку.
-  Список із завданнями має бути доступним після перезавантаження сторінки.
+const dataArr = getTasksStorage() ?? [];
 
-  Розмітка картки задачі
-  <li class="task-list-item">
-      <button class="task-list-item-btn">Delete</button>
-      <h3>Заголовок</h3>
-      <p>Текст</p>
-  </li>
-*/
+renderTaskComponents(dataArr);
+
+function submitHandler(e) {
+  e.preventDefault();
+
+  const name = e.target.elements.taskName.value.trim();
+  const description = e.target.elements.taskDescription.value.trim();
+
+   const formData = {
+    id: nanoid(),
+    name,
+    description,
+  };
+
+  dataArr.push(formData);
+
+  refs.form.reset();
+  setTasksStorage(dataArr);
+
+  renderTaskComponents([formData]);
+}
+
+function deleteTaskHandler(e) {
+  if (!e.target.classList.contains('task-list-item-btn')) return;
+
+  const currentTask = e.target.closest('.task-list-item');
+  const tasksId = currentTask.dataset.id;
+
+  updateTasksStorage(tasksId);
+  removeTask(currentTask);
+}
+
+refs.form.addEventListener('submit', submitHandler);
+
+refs.tasks.addEventListener('click', deleteTaskHandler);
+
+initTheme();
+refs.triggerThemeButton.addEventListener('click', changeTheme);
