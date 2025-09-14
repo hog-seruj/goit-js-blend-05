@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vanilla App Template</title>
     <script type="module" crossorigin src="/goit-js-blend-05/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/goit-js-blend-05/assets/vendor-OxPLOBIU.js">
     <link rel="stylesheet" crossorigin href="/goit-js-blend-05/assets/index-CkhCT6Zn.css">
   </head>
-  <body class="theme-dark">
+  <body>
     <header class="header">
   <div class="container header-container">
     <svg
@@ -36,20 +37,22 @@
       ></path>
     </svg>
     <div class="header-right-side-wrapper">
-      <button id="themeToggle" class="theme-toggle-button">Change Theme</button>
+      <button type="button" id="themeToggle" class="theme-toggle-button">Change Theme</button>
       <form class="header-form" id="task-form">
         <input
           class="header-form-input"
           type="text"
           name="taskName"
           placeholder="Title"
-        />
+          required
+        >
         <input
           class="header-form-input"
           type="text"
           name="taskDescription"
           placeholder="Description"
-        />
+          required
+        >
         <button class="header-form-btn" type="submit">Add</button>
       </form>
     </div>
@@ -62,36 +65,6 @@
       <section>
   <div class="container">
     <ul class="tasks-list" id="task-list">
-      <li class="task-list-item">
-        <button class="task-list-item-btn">Delete</button>
-        <h3>Заголовок</h3>
-        <p>Текст</p>
-      </li>
-      <li class="task-list-item">
-        <button class="task-list-item-btn">Delete</button>
-        <h3>Заголовок</h3>
-        <p>Текст</p>
-      </li>
-      <li class="task-list-item">
-        <button class="task-list-item-btn">Delete</button>
-        <h3>Заголовок</h3>
-        <p>Текст</p>
-      </li>
-      <li class="task-list-item">
-        <button class="task-list-item-btn">Delete</button>
-        <h3>Заголовок</h3>
-        <p>Текст</p>
-      </li>
-      <li class="task-list-item">
-        <button class="task-list-item-btn">Delete</button>
-        <h3>Заголовок</h3>
-        <p>Текст</p>
-      </li>
-      <li class="task-list-item">
-        <button class="task-list-item-btn">Delete</button>
-        <h3>Заголовок</h3>
-        <p>Текст</p>
-      </li>
     </ul>
   </div>
 </section>
